@@ -16,7 +16,7 @@
 
 - name: Config uwsgi applications
   template:
-    src: templates/uwsgi.ini.j2
+    src: templates/uwsgi_apps.ini.j2
     dest: "{{uwsgi_config_path}}/conf.d/{{ item }}.ini"
     owner: root
     group: root
