@@ -6,7 +6,7 @@ uwsgi_alpine_pkg:
   - uwsgi-syslog
 
 uwsgi_config_path: /etc/uwsgi
-uwsgi_vassals_path: "{{uwsgi_config_path}}conf.d"
+uwsgi_vassals_path: {{uwsgi_config_path}}/conf.d
 uwsgi_emperorconfig:
   - uid = uwsgi
   - gid = uwsgi
