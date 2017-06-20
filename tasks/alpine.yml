@@ -1,0 +1,25 @@
+---
+- name: Install uwsgi packages
+  apk: name={{ item }} state=present update_cache=yes
+  with_items:
+    - "{{uwsgi_alpine_pkg}}"
+  tags: [uwsgi]
+
+- name: Config uwsgi emperor
+  template:
+    src: templates/uwsgi.ini.j2
+    dest: /etc/uwsgi/uwsgi.ini
+    owner: root
+    group: root
+    mode: 0644
+  tags: [uwsgi]
+
+- name: Config uwsgi applications
+  template:
+    src: templates/uwsgi.ini.j2
+    dest: "{{uwsgi_config_path}}/conf.d/{{ item }}.ini"
+    owner: root
+    group: root
+    mode: 0644
+  tags: [uwsgi]
+  with_items: "{{ uwsgi_apps.keys() }}"
